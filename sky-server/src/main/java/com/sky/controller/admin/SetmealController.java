@@ -30,23 +30,12 @@ public class SetmealController {
     @PostMapping
     @ApiOperation("新增套餐")
     @CacheEvict(cacheNames="setmealCache",key="#setmealDTO.categoryId")
-    public Result save(@PathVariable SetmealDTO setmealDTO){
+    public Result save(@RequestBody SetmealDTO setmealDTO){
         log.info("新增套餐");
         setmealService.saveWithDish(setmealDTO);
         return Result.success();
     }
 
-    /**
-     * 根据分类id查询菜品
-     * @param categoryId
-     * @return
-     */
-    @GetMapping("/list")
-    @ApiOperation("根据分类id查询菜品")
-    public Result<List<Dish>> list(Long categoryId){
-        List<Dish> list = dishService.list(categoryId);
-        return Result.success(list);
-    }
 
     /**
      * 分页查询
