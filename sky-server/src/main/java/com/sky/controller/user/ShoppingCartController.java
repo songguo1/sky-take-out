@@ -7,6 +7,7 @@ import com.sky.service.ShoppingCartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @Api(tags="用户购物车相关接口")
 public class ShoppingCartController {
 
+    @Autowired
     private ShoppingCartService shoppingCartService;
     /**
      *
@@ -31,7 +33,7 @@ public class ShoppingCartController {
         return Result.success();
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
     @ApiOperation("查看购物车")
     public Result<List<ShoppingCart>> list(){
         log.info("查看购物车");
